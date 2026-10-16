@@ -1,30 +1,30 @@
-# Poland Energy Market Intelligence — GitHub update toolkit (v6.1)
+# Poland Energy Market Intelligence v6 — GitHub toolkit (v6.2)
 
-Refreshes the Live News Feed every 30 minutes with GitHub Actions. All sources are free (no API keys).
-Signal categories are applied by the dashboard, so the news feed stays uncategorised.
+## What it does
+| View | Headline | Link |
+|---|---|---|
+| Live News Feed | Publisher's **exact** headline (Polish shown in Polish + EN translation) | Working article link |
+| Signal Intelligence | **Rephrased** signal headline + summary | All working source links |
 
 ## Files
 | File | Purpose |
 |---|---|
-| `.github/workflows/update-news.yml` | Runs every 30 min / on demand; commits new articles (retries on push conflicts) |
-| `scripts/fetch_news.py` | Reads feeds, filters Poland energy news, translates PL→EN, tags company/technology/region, de-duplicates. A failing feed or item never stops the run |
-| `config/sources.json` | Feed list and keywords |
-| `data/signals.json` | Live feed file read by the dashboard |
+| `headline-patch.js` | Adds the behaviour above to v6 and loads `data/signals.json` (v6 looked for `signals.json` in the wrong folder) |
+| `.github/workflows/update-news.yml` | Every 30 min: new articles from RSS (exact headline + link) |
+| `.github/workflows/verify-headlines.yml` | Daily: opens every curated link, drops broken ones, records exact headlines |
+| `scripts/fetch_news.py`, `scripts/verify_headlines.py` | The two jobs |
+| `config/sources.json` | RSS feeds |
+| `config/headline_overrides.json` | Hand-checked headlines/links (win over the automatic check) |
+| `data/signals.json`, `data/headlines.json` | Outputs read by the dashboard |
 
-## Set-up
-1. Upload the v6 dashboard as `index.html` (repo root).
-2. In `index.html` search `fetch(` — the path must match `DATA_PATH` in the workflow (default `data/signals.json`).
-3. Upload all toolkit files, keeping `.github/workflows/`.
-4. Settings → Actions → General → Workflow permissions → **Read and write** → Save.
-5. Settings → Pages → Deploy from branch → main / (root).
-6. Actions → Update Poland Energy news feed → **Run workflow**.
+## Install
+1. Upload all files to the repo root (keep folders). `index.html` = your v6 dashboard.
+2. Edit `index.html` → find `</body>` (last lines) → paste above it:
+   `<script src="headline-patch.js"></script>`
+3. Settings → Actions → General → Workflow permissions → **Read and write**.
+4. Actions → **Verify headlines and links** → Run workflow. Then **Update Poland Energy news feed** → Run workflow.
+5. Open the github.io page, Ctrl+F5.
 
-## Troubleshooting
-| Error in Actions log | Fix |
-|---|---|
-| `Permission ... denied to github-actions[bot]` / `403` | Step 4 |
-| `No such file or directory: config/sources.json` | Upload `config/` folder to repo root |
-| `! <feed>: HTTPError 403/404` | Feed blocked/moved — remove or replace in `sources.json` (run still succeeds) |
-| `No feed could be reached` | Temporary network issue — re-run |
-| Workflow not in Actions tab | File must be at `.github/workflows/update-news.yml` exactly |
-| Dashboard shows update error but Actions is green | Path in `index.html` `fetch(...)` ≠ `DATA_PATH`; or page opened locally (`file://`) instead of the github.io URL; hard refresh (Ctrl+F5) |
+## Items without an exact headline
+Curated items whose links are home/listing pages, or whose site blocks the checker, stay in Signal Intelligence only.
+The verify log lists them ("no headline"). To restore one, add its article to `config/headline_overrides.json`.
