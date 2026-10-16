@@ -1,0 +1,38 @@
+name: Verify headlines and links
+
+on:
+  schedule:
+    - cron: "15 2 * * *"        # daily 02:15 UTC
+  workflow_dispatch:
+  push:
+    paths: ["index.html", "config/headline_overrides.json"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: repo-write
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install -r requirements.txt
+      - name: Check links and capture exact headlines
+        run: python scripts/verify_headlines.py
+      - name: Commit results
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/headlines.json
+          if git diff --cached --quiet; then echo "No changes."; exit 0; fi
+          git commit -m "Headline check $(date -u +'%Y-%m-%d %H:%M UTC')"
+          for i in 1 2 3; do
+            git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push origin HEAD:"${GITHUB_REF_NAME}" && exit 0
+            git rebase --abort 2>/dev/null; sleep 10
+          done
+          echo "::error::Could not push. Settings > Actions > General > Workflow permissions = Read and write."; exit 1
