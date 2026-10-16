@@ -11,6 +11,12 @@
 (function () {
   /* Headlines checked by hand (same as config/headline_overrides.json) — used until headlines.json loads */
   let H = {
+    o1: {"title": "Poland Announces Agreement On Plans For Second Nuclear Power Station", "url": "https://www.nucnet.org/news/poland-announces-agreement-on-plans-for-second-nuclear-power-station-10-2-2026"},
+    o2: {"title": "Westinghouse Places Conditional Purchase Orders with Polish Suppliers for First AP1000® Unit at Lubiatowo-Kopalino", "url": "https://info.westinghousenuclear.com/news/westinghouse-places-conditional-purchase-orders-with-polish-suppliers-for-first-ap1000-unit-at-lubiatowo-kopalino"},
+    o3: {"title": "Litgrid and PSE signed Connection Point Agreement for the Harmony Link Lithuania–Poland Electricity Interconnector", "url": "https://litgrid.eu/en/news/litgrid-and-pse-signed-connection-point-agreement-for-the-harmony-link-lithuania-poland-electricity-interconnector"},
+    o4: {"title": "R.Power sees Dec commissioning of 150-MW Polish battery", "url": "https://renewablesnow.com/news/r-power-sees-dec-commissioning-of-150-mw-polish-battery-1302711/"},
+    o5: {"title": "Actis adds 244MW / 1,141MWh battery storage portfolio to Polish platform within three months of launch", "url": "https://www.act.is/2026/10/06/actis-adds-244mw-1141mwh-battery-storage-portfolio-to-polish-platform-within-three-months-of-launch/"},
+    nu1: {"title": "PEJ and Westinghouse Begin Long-Lead Item Procurement Process for Poland’s First Nuclear Power Plant", "url": "https://info.westinghousenuclear.com/news/pej-and-westinghouse-begin-long-lead-item-procurement-process-for-polands-first-nuclear-power-plant"},
     x2: {title: "Engie acquires 438-MW battery storage project in Poland", url: "https://renewablesnow.com/news/engie-acquires-438-mw-battery-storage-project-in-poland-1300726/"},
     x3: {title: "EIB contributes over €260 million to Poland's second-largest onshore wind farm", url: "https://www.eib.org/en/press/all/2026-264-eib-contributes-over-eur260-million-to-poland-s-second-largest-onshore-wind-farm"},
     x4: {title: "Operatorzy łączą siły: wspólna platforma na Giełdzie zmieni zarządzanie siecią energetyczną w Polsce", url: "https://energa-operator.pl/aktualnosci/873585/operatorzy-lacza-sily-wspolna-platforma-na-gieldzie-zmieni-zarzadzanie-siecia-energetyczna-w-polsce", title_en: "Operators join forces: a common platform on the Exchange will change power grid management in Poland"},
@@ -55,14 +61,19 @@
       s.src_url = h.url || firstWorkingLink(s);
       s.in_feed = true;
       s.sig_title = s.title !== h.title ? s.title : (s.change || s.title);
+    } else if (EXACT_AT_SOURCE.test(s.id) && NO_ARTICLE.has(s.id)) {   /* exact title but no article link → signals only */
+      s.src_title = s.title_pl || s.title; s.src_en = s.title_pl ? s.title : '';
+      s.src_url = (h && h.url) || firstWorkingLink(s); s.in_feed = true;
+      s.sig_title = s.change || s.title;
     } else if (EXACT_AT_SOURCE.test(s.id) && !NO_ARTICLE.has(s.id)) {
       s.src_title = s.title_pl || s.title; s.src_en = s.title_pl ? s.title : '';
       s.src_url = (h && h.url) || firstWorkingLink(s);
       s.in_feed = true;
       s.sig_title = s.change || s.title;            /* source title is exact → use rephrased 'what changed' */
-    } else {                                        /* headline not yet verified → Signal Intelligence only */
-      s.src_title = ''; s.src_en = ''; s.src_url = firstWorkingLink(s);
-      s.in_feed = false;
+    } else {                                        /* not yet verified → shown with curated title until the daily check supplies the exact one */
+      s.src_title = s.title_pl || s.title; s.src_en = s.title_pl ? s.title : '';
+      s.src_url = (h && h.url) || firstWorkingLink(s);
+      s.in_feed = true;
       s.sig_title = s.title;                        /* curated title is already an analyst rephrase */
     }
     return s;
@@ -80,8 +91,8 @@
         ${s.src_en ? `<div class="ntr"><b>EN</b>${esc(s.src_en)}</div>` : ''}</td>
       <td class="ns">${esc(s.publisher)}</td></tr>`).join('');
     $('#view').innerHTML = list.length
-      ? `<div class="ntable panel"><table><thead><tr><th style="width:120px">Date</th><th>Headline (as published)</th><th style="width:200px">Source</th></tr></thead><tbody>${rows}</tbody></table>
-         ${pending ? `<div class="feed-note">${pending} curated item${pending > 1 ? 's' : ''} without a verified source headline ${pending > 1 ? 'are' : 'is'} shown in Signal Intelligence only.</div>` : ''}</div>`
+      ? `<div class="ntable panel"><table><thead><tr><th style="width:120px">Date</th><th>Headline</th><th style="width:200px">Source</th></tr></thead><tbody>${rows}</tbody></table>
+         </div>`
       : `<div class="empty"><h2>No news for this selection</h2><p>Adjust the search, filters or date range.</p></div>`;
     $('#cnt').innerHTML = `Showing <b>${list.length}</b> articles · published ${F.from ? fmtDate(F.from) : '1 Jan 2024'} – ${F.to ? fmtDate(F.to) : 'today'}`;
   };

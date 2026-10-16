@@ -1,9 +1,53 @@
 {
-  "_note": "Exact publisher headlines checked by hand. These win over the automatic checker. Use for sites that block bots, or to give an item a proper article link. Format: id: {title, url, title_en (only for Polish headlines)}",
-  "x2": {"title": "Engie acquires 438-MW battery storage project in Poland", "url": "https://renewablesnow.com/news/engie-acquires-438-mw-battery-storage-project-in-poland-1300726/"},
-  "x3": {"title": "EIB contributes over €260 million to Poland's second-largest onshore wind farm", "url": "https://www.eib.org/en/press/all/2026-264-eib-contributes-over-eur260-million-to-poland-s-second-largest-onshore-wind-farm"},
-  "x4": {"title": "Operatorzy łączą siły: wspólna platforma na Giełdzie zmieni zarządzanie siecią energetyczną w Polsce", "url": "https://energa-operator.pl/aktualnosci/873585/operatorzy-lacza-sily-wspolna-platforma-na-gieldzie-zmieni-zarzadzanie-siecia-energetyczna-w-polsce", "title_en": "Operators join forces: a common platform on the Exchange will change power grid management in Poland"},
-  "x5": {"title": "Magazyny energii jednym z filarów bezpieczeństwa Polski. Minister Energii Miłosz Motyka podpisał strategiczny list intencyjny z TAURONEM", "url": "https://www.gov.pl/web/energia/magazyny-energii-jednym-z-filarow-bezpieczenstwa-polski-minister-energii-milosz-motyka-podpisal-strategiczny-list-intencyjny-z-tauronem", "title_en": "Energy storage is one of the pillars of Poland's security. Energy Minister Miłosz Motyka signs strategic letter of intent with TAURON"},
-  "r1": {"title": "Poland approves overhaul of power grid connection rules", "url": "https://www.polskieradio.pl/395/7786/Artykul/3630987,poland-approves-overhaul-of-power-grid-connection-rules"},
-  "p1": {"title": "Poland allocates subsidies to 14.5 GWh of energy storage projects", "url": "https://www.ess-news.com/2025/12/19/poland-allocates-subsidies-to-14-5-gwh-of-energy-storage-projects/"}
+ "_note": "Exact publisher headlines checked by hand. These win over the automatic checker. Use for sites that block bots, or to give an item a proper article link. Format: id: {title, url, title_en (only for Polish headlines)}",
+ "x2": {
+  "title": "Engie acquires 438-MW battery storage project in Poland",
+  "url": "https://renewablesnow.com/news/engie-acquires-438-mw-battery-storage-project-in-poland-1300726/"
+ },
+ "x3": {
+  "title": "EIB contributes over €260 million to Poland's second-largest onshore wind farm",
+  "url": "https://www.eib.org/en/press/all/2026-264-eib-contributes-over-eur260-million-to-poland-s-second-largest-onshore-wind-farm"
+ },
+ "x4": {
+  "title": "Operatorzy łączą siły: wspólna platforma na Giełdzie zmieni zarządzanie siecią energetyczną w Polsce",
+  "url": "https://energa-operator.pl/aktualnosci/873585/operatorzy-lacza-sily-wspolna-platforma-na-gieldzie-zmieni-zarzadzanie-siecia-energetyczna-w-polsce",
+  "title_en": "Operators join forces: a common platform on the Exchange will change power grid management in Poland"
+ },
+ "x5": {
+  "title": "Magazyny energii jednym z filarów bezpieczeństwa Polski. Minister Energii Miłosz Motyka podpisał strategiczny list intencyjny z TAURONEM",
+  "url": "https://www.gov.pl/web/energia/magazyny-energii-jednym-z-filarow-bezpieczenstwa-polski-minister-energii-milosz-motyka-podpisal-strategiczny-list-intencyjny-z-tauronem",
+  "title_en": "Energy storage is one of the pillars of Poland's security. Energy Minister Miłosz Motyka signs strategic letter of intent with TAURON"
+ },
+ "r1": {
+  "title": "Poland approves overhaul of power grid connection rules",
+  "url": "https://www.polskieradio.pl/395/7786/Artykul/3630987,poland-approves-overhaul-of-power-grid-connection-rules"
+ },
+ "p1": {
+  "title": "Poland allocates subsidies to 14.5 GWh of energy storage projects",
+  "url": "https://www.ess-news.com/2025/12/19/poland-allocates-subsidies-to-14-5-gwh-of-energy-storage-projects/"
+ },
+ "o1": {
+  "title": "Poland Announces Agreement On Plans For Second Nuclear Power Station",
+  "url": "https://www.nucnet.org/news/poland-announces-agreement-on-plans-for-second-nuclear-power-station-10-2-2026"
+ },
+ "o2": {
+  "title": "Westinghouse Places Conditional Purchase Orders with Polish Suppliers for First AP1000® Unit at Lubiatowo-Kopalino",
+  "url": "https://info.westinghousenuclear.com/news/westinghouse-places-conditional-purchase-orders-with-polish-suppliers-for-first-ap1000-unit-at-lubiatowo-kopalino"
+ },
+ "o3": {
+  "title": "Litgrid and PSE signed Connection Point Agreement for the Harmony Link Lithuania–Poland Electricity Interconnector",
+  "url": "https://litgrid.eu/en/news/litgrid-and-pse-signed-connection-point-agreement-for-the-harmony-link-lithuania-poland-electricity-interconnector"
+ },
+ "o4": {
+  "title": "R.Power sees Dec commissioning of 150-MW Polish battery",
+  "url": "https://renewablesnow.com/news/r-power-sees-dec-commissioning-of-150-mw-polish-battery-1302711/"
+ },
+ "o5": {
+  "title": "Actis adds 244MW / 1,141MWh battery storage portfolio to Polish platform within three months of launch",
+  "url": "https://www.act.is/2026/10/06/actis-adds-244mw-1141mwh-battery-storage-portfolio-to-polish-platform-within-three-months-of-launch/"
+ },
+ "nu1": {
+  "title": "PEJ and Westinghouse Begin Long-Lead Item Procurement Process for Poland’s First Nuclear Power Plant",
+  "url": "https://info.westinghousenuclear.com/news/pej-and-westinghouse-begin-long-lead-item-procurement-process-for-polands-first-nuclear-power-plant"
+ }
 }

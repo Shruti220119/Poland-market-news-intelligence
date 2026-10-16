@@ -19,12 +19,10 @@
 
 ## Install
 1. Upload all files to the repo root (keep folders). `index.html` = your v6 dashboard.
-2. Edit `index.html` → find `</body>` (last lines) → paste above it:
-   `<script src="headline-patch.js"></script>`
+2. Use poland-energy-market-intelligence-v8.html as `index.html` (the patch is already built in). For the old v6, add `<script src="headline-patch.js"></script>` above `</body>` instead.
 3. Settings → Actions → General → Workflow permissions → **Read and write**.
 4. Actions → **Verify headlines and links** → Run workflow. Then **Update Poland Energy news feed** → Run workflow.
 5. Open the github.io page, Ctrl+F5.
 
 ## Items without an exact headline
-Curated items whose links are home/listing pages, or whose site blocks the checker, stay in Signal Intelligence only.
-The verify log lists them ("no headline"). To restore one, add its article to `config/headline_overrides.json`.
+All items appear in the Live News Feed. Items not yet verified show the curated title; the daily check replaces it with the exact publisher headline once the article page loads.
